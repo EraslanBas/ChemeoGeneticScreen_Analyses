@@ -17,7 +17,7 @@ project directory and are intentionally not tracked here (see `.gitignore`).
 | Path | Contents |
 |---|---|
 | `RScripts/` | glmGamPoi (Gamma-Poisson GLM) differential expression and `ashr` empirical-Bayes shrinkage — both invoked per-perturbation or per-chunk from the shell scripts below. |
-| `PythonScripts/` | The production pipeline: normalization, the Welch-t-test DE path, significance tables, embeddings/distances, and the per-cell pathway-scoring + OLS interaction pipeline. (Gene-program fitting — MOFA+/cNMF/ICA/VAE — now lives in the sibling `ModuleFinder_VAE` project.) |
+| `PythonScripts/` | The production pipeline: normalization, the Welch-t-test DE path, significance tables, embeddings/distances, and the per-cell pathway-scoring + OLS interaction pipeline. |
 | `Notebooks/` | Numbered, mostly-sequential analysis notebooks (`01_...` → `23_...`) plus assorted exploratory/plotting notebooks. These are where the pipeline was originally developed; several were later hardened into the scripts in `PythonScripts/`. |
 | `BashScripts/` | Orchestration: wrappers that fan a Python/R script out across drugs, perturbation groups, or pathway batches, usually with skip-existing resumability and per-run logs. |
 | `docs/` | Extended documentation: `docs/scripts_reference.md` (per-file reference), `docs/DEPENDENCIES.md`, and `docs/methods_notes/` — copies of the methods memos from the parent project's `Notes/` folder that justify specific pipeline choices. |
@@ -107,29 +107,6 @@ much more expensive to run per-perturbation. Running both and comparing
 (`CompareWelchVsGlmGamPoi.ipynb`) is the check that the Welch-path calls are
 trustworthy where they agree, and flags where they don't. See
 `docs/methods_notes/CompositionalBias_scRNA_DE.md`.
-
-## The gene-program modeling work (step 6)
-
-All shared-vs-drug-private factor-model code — not just the VAEs — now lives
-together in a sibling project, `~/Projects/ModuleFinder_VAE`, and is out of
-scope for this repo:
-
-- **MOFA+** (linear; `RunMOFA_PosteriorMatrices.py`, `19_MOFA_PosteriorMatrices.ipynb`)
-  — ARD-driven shared/private decomposition, drugs as views.
-- **cNMF** and **ICA** (`RunCNMF.py`/`cNMFForDrugNTCs.ipynb`,
-  `08_GenePrograms_ICA.ipynb`) — matrix-factorization baselines.
-- **Two VAE architectures** (deep) — a drug-invariant version of the same
-  decomposition (product-of-experts shared latent + adversarial drug
-  classifier via gradient reversal; a group-lasso single-block alternative).
-- `PlotModelArchitecture.ipynb` — renders the comparison figures across all
-  four approaches.
-- The associated result/output directories (`MOFA/`, `cnmf_analysis/`,
-  `vae_beta_results/`, `vae_gene_programs/`) moved along with the code.
-
-They were grouped together because they're one self-contained modeling
-effort compared head-to-head. See
-`docs/methods_notes/identifiability_in_GFA.md` for the theoretical grounding
-shared across all four approaches.
 
 ## Known duplication / rough edges
 

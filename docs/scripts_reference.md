@@ -209,29 +209,10 @@ path without reaching into the other's directory.
   Leiden split used by `MakeChemogeneticLeidenSplit.py`).
 - `Notebooks/05_PlotFoldChanges.ipynb` — small fold-change plotting notebook.
 
-## 5. Gene programs / factor models
+## 5. Other
 
-**Not in this repo.** All gene-program / factor-model code — linear (MOFA+),
-matrix-factorization (cNMF, ICA), and deep (VAE) — now lives together in a
-separate project, `~/Projects/ModuleFinder_VAE`, since it's a self-contained
-modeling effort compared across those four approaches:
-
-- `PythonScripts/RunMOFA_PosteriorMatrices.py`, `Notebooks/19_MOFA_PosteriorMatrices.ipynb`
-  — MOFA+ on the per-drug posterior-mean logFC matrices (drugs as views,
-  ARD-driven shared/private decomposition).
-- `PythonScripts/RunCNMF.py`, `Notebooks/cNMFForDrugNTCs.ipynb` — consensus
-  NMF (`cnmf` package), the latter applied to drug-non-targeting-control
-  cells specifically.
-- `Notebooks/08_GenePrograms_ICA.ipynb` — FastICA baseline.
-- `Notebooks/PlotModelArchitecture.ipynb` — renders the MOFA/cNMF/ICA/VAE
-  architecture-comparison figures.
-- Plus the two VAE architectures (product-of-experts shared latent +
-  adversarial drug-invariance training; group-lasso single-block
-  alternative) and their trained-model outputs.
-
-`Notebooks/BpNetPerturb.ipynb` (a dilated-convolution / BPNet-style PyTorch
-model) is unrelated to this and stays here — it's a from-scratch
-convolutional architecture, not a gene-program factor model.
+- `Notebooks/BpNetPerturb.ipynb` — a dilated-convolution, BPNet-style PyTorch
+  model applied to this project's perturbation data.
 
 ## 6. Pathway analysis
 

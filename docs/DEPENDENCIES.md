@@ -13,13 +13,11 @@ Core data / single-cell:
 Differential expression / statistics:
 - `pdex` (`parallel_differential_expression` — Welch-style DE)
 - `statsmodels` (OLS interaction models, BH-FDR)
-- `sklearn` (PCA, StandardScaler, LinearRegression, FastICA, pairwise distances)
+- `sklearn` (PCA, StandardScaler, LinearRegression, pairwise distances)
 
-Gene programs / factor models:
-- `mofapy2` (MOFA+)
-- `cnmf` (consensus NMF)
+Pathway enrichment / other modeling:
 - `gseapy` (pathway enrichment)
-- `torch` (VAE / BpNet-style models — see `ModuleFinder_VAE` for the main VAE work)
+- `torch` (BpNet-style model)
 
 Plotting:
 - `matplotlib`, `seaborn`, `matplotlib_venn`
