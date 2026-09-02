@@ -151,8 +151,6 @@ path without reaching into the other's directory.
 - `Notebooks/20_CompareDEWithCollaboratorDESeq2.ipynb` — notebook counterpart
   of `CompareDEWithCollaboratorDESeq2.py`, one self-contained analysis block
   per drug.
-- `Notebooks/OLD/04_PlotDEGs_Drugs.ipynb`, `OLD/04_PlotDEGs_KnockDowns.ipynb`
-  — legacy R plotting notebooks (superseded), kept for reference.
 
 ## 3. Significance tables
 
