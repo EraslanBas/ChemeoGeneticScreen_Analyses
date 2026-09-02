@@ -1,7 +1,7 @@
 # ChemoGeneticScreens — analysis pipeline
 
-Code for analyzing a chemogenetic single-cell perturbation screen: CRISPR
-knockouts crossed with 16 small-molecule drug contexts (plus DMSO vehicle
+Code for analyzing a chemogenetic single-cell perturbation screen: CRISPRi
+knockdowns crossed with 16 small-molecule drug contexts (plus DMSO vehicle
 controls across two batches), read out by single-cell RNA-seq. The question
 throughout is *how does a genetic perturbation's transcriptional effect
 change depending on which drug the cell is also exposed to* — i.e. context
@@ -95,27 +95,3 @@ Cross-checks along the way:
     — checks that a drug's effect on a perturbation's signature exceeds
       DMSO-replicate (batch) noise
 ```
-
-## Why two DE methods?
-
-The Welch/ashr path is fast and works directly on log1p-normalized data, but
-total-count normalization can introduce *compositional bias*: a few strongly
-up- or down-regulated genes distort the normalization factor for every other
-gene, producing spurious "significant" passenger genes. glmGamPoi models raw
-counts directly (Gamma-Poisson GLM) and is not subject to this bias, but is
-much more expensive to run per-perturbation. Running both and comparing
-(`CompareWelchVsGlmGamPoi.ipynb`) is the check that the Welch-path calls are
-trustworthy where they agree, and flags where they don't. See
-`docs/methods_notes/CompositionalBias_scRNA_DE.md`.
-
-## Known duplication / rough edges
-
-Documented in detail in `docs/scripts_reference.md`, but worth flagging up
-front: `Main.R`, `Conf.R`, `libraries.py`, and `util.py` each exist as two
-byte-identical copies (once in `Notebooks/`, once in `RScripts/`/
-`PythonScripts/`) so notebooks and standalone scripts can each load them via
-a relative/cwd-based path without cross-referencing the other's directory —
-this is intentional, not accidental drift. `parameters.py` also exists in
-both locations; the two copies differ only in how one list is line-wrapped,
-not in content — but since they're independent files, keep them in sync by
-hand if you edit the values.

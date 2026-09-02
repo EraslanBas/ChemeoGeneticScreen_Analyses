@@ -200,7 +200,7 @@ path without reaching into the other's directory.
   `12_GenerateGeneEmbeddings.ipynb` — PCA-based perturbation and gene
   embeddings from the rowbound posterior-mean matrices.
 - `Notebooks/18_PerturbationManifoldMotion.ipynb` — measures how much each
-  knockout's transcriptional signature moves across the 16 drug contexts in
+  knockdown's transcriptional signature moves across the 16 drug contexts in
   PCA space ("manifold motion" = context dependence).
 - `Notebooks/23_ContextSpecificity_vs_PCs.ipynb` — refines context specificity
   as cosine distance to the batch-matched DMSO baseline, sweeping number of
