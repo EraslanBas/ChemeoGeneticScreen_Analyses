@@ -20,7 +20,7 @@ project directory and are intentionally not tracked here (see `.gitignore`).
 | `PythonScripts/` | The production pipeline: normalization, the Welch-t-test DE path, significance tables, embeddings/distances, and the per-cell pathway-scoring + OLS interaction pipeline. (Gene-program fitting — MOFA+/cNMF/ICA/VAE — now lives in the sibling `ModuleFinder_VAE` project.) |
 | `Notebooks/` | Numbered, mostly-sequential analysis notebooks (`01_...` → `23_...`) plus assorted exploratory/plotting notebooks. These are where the pipeline was originally developed; several were later hardened into the scripts in `PythonScripts/`. |
 | `BashScripts/` | Orchestration: wrappers that fan a Python/R script out across drugs, perturbation groups, or pathway batches, usually with skip-existing resumability and per-run logs. |
-| `docs/` | This documentation, plus `docs/methods_notes/` — copies of the methods memos from the parent project's `Notes/` folder that justify specific pipeline choices. |
+| `docs/` | Extended documentation: `docs/scripts_reference.md` (per-file reference), `docs/DEPENDENCIES.md`, and `docs/methods_notes/` — copies of the methods memos from the parent project's `Notes/` folder that justify specific pipeline choices. |
 
 See `docs/scripts_reference.md` for a per-file description of every script and
 notebook, organized by pipeline stage.
@@ -65,16 +65,6 @@ raw counts (per drug context, per-cell h5ad)
 5. Geometry / embeddings          10_InspectGeometryConcordance.ipynb →
    (PCA on rowbound               11_GeneratePerturbationEmbeddings.ipynb,
     posterior-mean matrices)      12_GenerateGeneEmbeddings.ipynb
-        │
-        ▼
-6. Gene programs / factor models  → moved to the sibling `ModuleFinder_VAE`
-   (shared vs. drug-private         project: MOFA+ (linear), cNMF and ICA
-    transcriptional programs)       (matrix factorization), and two VAE
-                                     architectures (deep). See that project's
-                                     `PythonScripts/`, `Notebooks/`, `MOFA/`,
-                                     `cnmf_analysis/`, `VAE_Reformulated/`,
-                                     `VAE_SingleBlock/`, `vae_beta_results/`,
-                                     `vae_gene_programs/`.
         │
         ▼
 7. Pathway analysis  ─────────────────────────┬──────────────────────────────
