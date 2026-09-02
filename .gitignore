@@ -1,0 +1,31 @@
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Claude Code local state (machine-specific, not project code)
+.claude/
+
+# Job-run logs (execution history, not code)
+BashScripts/logs/
+PythonScripts/logs/
+PythonScripts/nohup.out
+
+# Stray / non-notebook files
+Notebooks/Up
+Notebooks/06_InspectDMSOReplicateDiscrepancy.ipynb.bak
+
+# Pure data-output directories that ended up nested under Notebooks/
+Notebooks/cnmf_analysis/
+Notebooks/explained_var_filtered/
+
+# Data & result artifacts (excluded from the repo by design; code only)
+*.csv
+*.pkl
+*.pt
+*.h5
+*.hdf5
+*.parquet
+*.log
+*.png
+*.npz
