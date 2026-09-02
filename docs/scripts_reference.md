@@ -211,28 +211,26 @@ path without reaching into the other's directory.
 
 ## 5. Gene programs / factor models
 
-- `PythonScripts/RunMOFA_PosteriorMatrices.py` — fits MOFA+ on the per-drug
-  posterior-mean logFC matrices, drugs as views, perturbations as samples;
-  ARD on factors and weights gives the shared/private decomposition
-  automatically (factor inactive in a view ⇒ that view doesn't share it).
-- `PythonScripts/RunCNMF.py` — consensus NMF (`cnmf` package) on drug/control
-  data, with downstream GSEA pathway enrichment (`gseapy`) on the resulting
-  spectra.
-- `Notebooks/19_MOFA_PosteriorMatrices.ipynb` — step-by-step notebook version
-  of `RunMOFA_PosteriorMatrices.py` for inspecting intermediate state.
-- `Notebooks/08_GenePrograms_ICA.ipynb` — FastICA baseline for gene-program
-  discovery (train/test split via `ShuffleSplit`, `StandardScaler`).
-- `Notebooks/cNMFForDrugNTCs.ipynb` — cNMF applied specifically to
-  drug-non-targeting-control cells.
-- `Notebooks/PlotModelArchitecture.ipynb` — renders model-architecture
-  figures (used for the MOFA/VAE comparison docs).
+**Not in this repo.** All gene-program / factor-model code — linear (MOFA+),
+matrix-factorization (cNMF, ICA), and deep (VAE) — now lives together in a
+separate project, `~/Projects/ModuleFinder_VAE`, since it's a self-contained
+modeling effort compared across those four approaches:
 
-**Not in this repo:** the deep VAE-based gene-program models (product-of-experts
-shared latent + adversarial drug-invariance training, and a group-lasso
-single-block alternative) were split into a separate project,
-`~/Projects/ModuleFinder_VAE`, since they're a self-contained modeling effort.
+- `PythonScripts/RunMOFA_PosteriorMatrices.py`, `Notebooks/19_MOFA_PosteriorMatrices.ipynb`
+  — MOFA+ on the per-drug posterior-mean logFC matrices (drugs as views,
+  ARD-driven shared/private decomposition).
+- `PythonScripts/RunCNMF.py`, `Notebooks/cNMFForDrugNTCs.ipynb` — consensus
+  NMF (`cnmf` package), the latter applied to drug-non-targeting-control
+  cells specifically.
+- `Notebooks/08_GenePrograms_ICA.ipynb` — FastICA baseline.
+- `Notebooks/PlotModelArchitecture.ipynb` — renders the MOFA/cNMF/ICA/VAE
+  architecture-comparison figures.
+- Plus the two VAE architectures (product-of-experts shared latent +
+  adversarial drug-invariance training; group-lasso single-block
+  alternative) and their trained-model outputs.
+
 `Notebooks/BpNetPerturb.ipynb` (a dilated-convolution / BPNet-style PyTorch
-model) is unrelated to the VAE work and stays here — it's a from-scratch
+model) is unrelated to this and stays here — it's a from-scratch
 convolutional architecture, not a gene-program factor model.
 
 ## 6. Pathway analysis
